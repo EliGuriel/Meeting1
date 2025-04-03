@@ -29,8 +29,8 @@ public class StudentController {
 
     @PostMapping()
     public ResponseEntity<Student> addStudent(@Valid @RequestBody Student student) {
-        // האנוטציה @Valid תגרום לולידציה של אובייקט הסטודנט לפי ההגדרות במודל
-        // אם הולידציה תיכשל, תיזרק חריגת MethodArgumentNotValidException
+        // The @Valid annotation triggers validation of the student object, according to the model definitions,
+        // If validation fails, a MethodArgumentNotValidException will be thrown
         Student added = studentServiceImpl.addStudent(student);
 
         URI location = ServletUriComponentsBuilder
@@ -44,7 +44,7 @@ public class StudentController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Student> updateStudent(@Valid @RequestBody Student student, @PathVariable Long id) {
-        // גם כאן מתבצעת ולידציה של אובייקט הסטודנט
+        // Student object validation is also performed here
         Student updated = studentServiceImpl.updateStudent(student, id);
         return ResponseEntity.ok(updated); // 200 OK
     }
